@@ -17,9 +17,13 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
 from product.views import ProductViewSet
+from manufacturer.views import ManufacturerViewSet
+from supplier.views import SupplierViewSet
 
 router = routers.SimpleRouter()
 router.register(r'products', ProductViewSet)
+router.register(r'suppliers', SupplierViewSet)
+router.register(r'manufacturer', ManufacturerViewSet)
 urlpatterns = router.urls
 
 
