@@ -95,7 +95,7 @@ def seed_items():
                 d_markup = requests.get(url + product_link).text
                 d_soup = BeautifulSoup(d_markup, 'html.parser')
 
-                #name = d_soup.find("h1").text
+                name = d_soup.find("h1").text
                 category_name = sub_category_title
                 manufacturer = d_soup.find(text="Hersteller / Vertrieb")
 
@@ -113,17 +113,17 @@ def seed_items():
 
                 #supplier = Supplier.objects.first()
 
-                image_url = d_soup.find(class_="product-image block")
+                img = d_soup.find(class_="product-image block")
 
-                if image_url is None:
+                if img is None:
                     continue
 
-                image_url = image_url.find("img").get('src')
-                image_url = url+image_url
+                img = img.find("img").get('src')
+                img = url+img
 
                 products.append({"name": product_title,
                                  "product_link": product_link,
-                                 "image_url": image_url,
+                                 "image_url": img,
                                  "barcode": barcode,
                                  "manufacturer": manufacturer,
                                  "categroy": category_name, })
@@ -136,9 +136,9 @@ def seed_items():
                 #   CREATE ITEM IN DATABASE
                 #
                 try:
-                    Item.objects.create(name=product_title,
-                                        product_link=product_link,
-                                        image_url=image_url,
+                    Item.objects.create(name=name,
+                                        product_link=url+product_link,
+                                        image_url=img,
                                         barcode=barcode,
                                         manufacturer=Manufacturer.objects.filter(name=manufacturer)[0],
                                         category=Category.objects.filter(name=category_name)[0])
