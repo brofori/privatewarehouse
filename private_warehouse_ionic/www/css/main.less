@@ -1,0 +1,195 @@
+@import 'mixins';
+
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+  font-family: Arial;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.bar-positive {
+  background-color: #589250 !important;
+  color: white;
+  height: 60px !important;
+  -webkit-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
+}
+
+.bar-positive .button.button-clear {
+  font-size: 26px;
+  margin-top: 4px;
+  margin-left: 6px;
+}
+
+.bar-positive .title {
+  text-align: center !important;
+  line-height: 60px !important;
+  color: white !important;
+  height: 60px !important;
+}
+
+.pane {
+  //background-color: #ffffff;
+  //background-image: url(http://www.transparenttextures.com/patterns/45-degree-fabric-dark.png);
+}
+
+.has-header {
+  top: 60px !important;
+}
+
+div.popup-wrapper {
+  display: inline-block;
+
+  button {
+    width: 30px;
+    height: 30px;
+    background-position: center center;
+    background-size: 25px auto;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    &.filter {
+      background-image: url(../img/filter.png);
+    }
+
+    &.sort {
+      background-image: url(../img/sort.png);
+    }
+  }
+
+  .popup {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    right: 20px;
+    height: 200px;
+  }
+}
+
+.view .scroll {
+  padding-top: 20px;
+  margin: 0 10px;
+}
+
+.cents {
+  &:before {
+    content: '.';
+  }
+}
+
+.bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  // background: -webkit-linear-gradient(transparent, rgba(33,33,33,.2)); /* For Safari 5.1 to 6.0 */
+  // background: -o-linear-gradient(transparent, rgba(33,33,33,.2)); /* For Opera 11.1 to 12.0 */
+  // background: -moz-linear-gradient(transparent, rgba(33,33,33,.2)); /* For Firefox 3.6 to 15 */
+  // background: linear-gradient(transparent, rgba(33,33,33,.2)); /* Standard syntax */
+  z-index: 9;
+
+  &.buttons {
+    height: 40px;
+    background-color: grey;
+    text-align: right;
+    padding: 0 10px;
+    color: white;
+
+    > div {
+      margin-top: 5px;
+    }
+  }
+
+  .add-product {
+    position: absolute;
+    border-radius: 90px;
+    height: 65px;
+    width: 65px;
+    display: block;
+    outline: none;
+    padding: 0;
+    color: white;
+    background-color: #589250;
+    border: 1px solid #588850;
+    right: 10px;
+    top: 0;
+
+    &.activated {
+      background-color: #588850;
+    }
+  }
+
+  .shopping-list {
+    background-image: url(../img/shopping-list.png);
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    width: 60px;
+    height: 60px;
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    padding: 0;
+  }
+}
+
+input[type=text], input[type=number] {
+  height: 30px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
