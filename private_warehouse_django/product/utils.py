@@ -95,7 +95,7 @@ def seed_items():
                 d_markup = requests.get(url + product_link).text
                 d_soup = BeautifulSoup(d_markup, 'html.parser')
 
-                name = d_soup.find("h1").text
+                name = d_soup.find("h1").text.strip()
                 category_name = sub_category_title
                 manufacturer = d_soup.find(text="Hersteller / Vertrieb")
 

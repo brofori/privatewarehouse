@@ -12,7 +12,6 @@ class Item(models.Model):
     manufacturer = models.ForeignKey('manufacturer.Manufacturer')
     barcode = models.CharField(max_length=100)
     tags = TaggableManager()
-    supplier = models.ForeignKey('supplier.Supplier', null=True, default=None)
     image_url = models.URLField()
     product_link = models.URLField()
 
