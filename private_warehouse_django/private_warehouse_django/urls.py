@@ -19,13 +19,17 @@ from rest_framework import routers
 from product.views import ItemViewSet, ProductViewSet, PriceViewSet
 from manufacturer.views import ManufacturerViewSet
 from supplier.views import SupplierViewSet
+from household.views import HouseholdViewSet
 
 router = routers.SimpleRouter()
+router.register(r'households', HouseholdViewSet)
 router.register(r'items', ItemViewSet)
 router.register(r'products', ProductViewSet)
 router.register(r'prices', PriceViewSet)
 router.register(r'suppliers', SupplierViewSet)
 router.register(r'manufacturer', ManufacturerViewSet)
 urlpatterns = router.urls
+
+urlpatterns += [url(r'^docs/', include('rest_framework_swagger.urls')),]
 
 

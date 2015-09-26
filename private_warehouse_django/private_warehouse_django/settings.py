@@ -39,10 +39,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'django_extensions',
+    'rest_framework_swagger',
     'taggit',
     'product',
     'supplier',
-    'manufacturer'
+    'manufacturer',
+    'household'
 )
 
 SHELL_PLUS = 'ipython'
