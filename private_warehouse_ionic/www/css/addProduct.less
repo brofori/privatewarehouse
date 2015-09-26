@@ -1,0 +1,60 @@
+@import 'mixins';
+
+.add-product-view {
+
+  section {
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    position: relative;
+
+    .title {
+      position: absolute;
+      top: -7.5px;
+      left: 7px;
+      padding: 0 4px;
+      background-color: white;
+      font-size: 14px;
+    }
+
+    & + section {
+      padding-top: 20px;
+    }
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  .input {
+    > * {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    input {
+      height: 40px;
+      width: calc(~'100% - 60px');
+    }
+
+    button {
+      background-image: url(../img/barcode.png);
+      background-repeat: no-repeat;
+      background-size: 80% auto;
+      border-radius: 5px;
+      background-color: transparent;
+      background-position: center center;
+      padding: 5px;
+      -webkit-appearance: none;
+      border: 1px solid black;
+      width: 50px;
+      height: 40px;
+    }
+  }
+
+  .settings {
+    input[type=number] {
+      width: 30px;
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<ion-view title="">
+  <ion-content class="shopping-list-view view">
+    <section class="available-list list">
+      <ul>
+        <li ng-repeat="product in availableList">
+          <div class="inner-item" on-drag="onItemDrag($event,$index)" style="{{$index == activeItemIndex?'margin-left: '+swipeLeftDistance+'px;':'' }}" ng-class="{transition:$index != activeItemIndex, checked:product.checked}">
+            <span class="index">{{$index}}</span>
+            <span class="name">{{product.name}}</span>
+            <span class="amount">{{getAmountById(product.id)}}</span>
+            <span class="price" ng-bind-html="product.price | priceFilter"></span>
+            <button ng-click="checkProduct(product)" class="check"></button>
+          </div>
+          <button class="remove" ng-click="removeProduct($index)"></button>
+        </li>
+      </ul>
+    </section>
+    <section class="not-available-list list">
+      <p>Not available in {{storeSelection}}</p>
+      <ul>
+        <li ng-repeat="product in notAvailableList">
+          <div class="inner-item" on-drag="onItemDrag($event, ($index + 2000))" style="{{($index+2000) == activeItemIndex?'margin-left: '+swipeLeftDistance+'px;':'' }}" ng-class="{transition:($index+2000) != activeItemIndex, checked:product.checked}">
+            <span class="index">{{$index}}</span>
+            <span class="name">{{product.name}}</span>
+            <span class="amount">{{getAmountById(product.id)}}</span>
+            <span class="price" ng-bind-html="product.price | priceFilter"></span>
+            <button ng-click="checkProduct(product)" class="check"></button>
+          </div>
+          <button class="remove" ng-click="removeProduct($index)"></button>
+        </li>
+      </ul>
+    </section>
+  </ion-content>
+  <section class="buttons bottom">
+    <span class="estimated-price" ng-bind-html="estimatedPrice | priceFilter"></span>
+    <div class="popup-wrapper">
+      <button class="sort"></button>
+      <div class="popup"></div>
+    </div>
+    <div class="popup-wrapper">
+      <button class="filter"></button>
+      <div class="popup"></div>
+    </div>
+  </section>
+</ion-view>

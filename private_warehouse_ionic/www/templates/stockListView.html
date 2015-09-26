@@ -1,0 +1,25 @@
+<ion-view title="Easy Shopper">
+  <ion-content class="stock-list-view view">
+    <section class="buttons">
+      <div class="popup-wrapper">
+        <button class="sort">+</button>
+        <div class="popup"></div>
+      </div>
+      <div class="popup-wrapper">
+        <button class="filter">+</button>
+        <div class="popup"></div>
+      </div>
+    </section>
+    <section class="list">
+      <ul>
+        <li ng-repeat="product in stockList">
+          <img ng-src="product.imgUrl"><span class="name">{{product.name}}</span><span class="amount">{{getAmountById(product.id)}}</span> <button ng-click="reduceProductAmount(product.id)" class="reduce">-1</button>
+        </li>
+      </ul>
+    </section>
+  </ion-content>
+  <div class="bottom">
+    <button ng-click="goToAddProduct()" class="add-product">+1</button>
+    <button ng-click="goToShoppingList()" class="shopping-list"></button>
+  </div>
+</ion-view>
