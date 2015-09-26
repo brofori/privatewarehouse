@@ -7,7 +7,6 @@ from supplier.models import Supplier
 
 
 def seed_tag_list():
-    tag_list = []
     abc = "abcdefghijklmnopqrstovwxyz"
     for letter in abc:
         r = requests.get("http://www.bbc.co.uk/food/ingredients/by/letter/{}".format(letter))
