@@ -155,4 +155,3 @@ def seed_items():
 
 
     print("finished data acquisition")
-    #Item.objects.create()
