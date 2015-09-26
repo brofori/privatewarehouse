@@ -1,0 +1,25 @@
+<ion-view title="ProductDetail">
+  <ion-content class="product-detail-view view">
+    <div class="product-img">
+      <img ng-class="preview" ng-src="{{currentProduct.image_url}}" />
+      <h1>{{currentProduct.name}}</h1>
+    </div>
+    <section class="info">
+      <dl>
+        <dd>
+          Price
+        </dd>
+        <dt>
+          3€
+        </dt>
+      </dl>
+      <p class="description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+    </section>
+    <section class="stats">
+      <ul class="events">
+        <li ng-repeat="event in eventList" ng-class="{in: event.in}"><span class="amount">{{event.amount}}</span><span class="time">{{event.time}}</span></li>
+      </ul>
+    </section>
+  </ion-content>
+
+</ion-view>

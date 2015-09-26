@@ -20,9 +20,10 @@ privateWarehouse.config(function($stateProvider, $urlRouterProvider) {
     controller: 'addProductCtrl'
   });
   $stateProvider.state('productDetail', {
-    url: '/addProduct',
+    url: '/productDetail/{productId}',
     templateUrl: 'templates/productDetailView.html',
-    controller: 'productDetailCtrl'
+    controller: 'productDetailCtrl',
+    
   });
   $stateProvider.state('shoppingList', {
     url: '/shoppingList',

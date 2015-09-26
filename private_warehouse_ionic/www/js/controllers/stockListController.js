@@ -8,6 +8,9 @@ privateWarehouse.controller('stockListCtrl', function($scope, $state) {
   $scope.goToShoppingList = function() {
     $state.go('shoppingList')
   }
+  $scope.goToDetailProductView = function(id) {
+    $state.go('productDetail', { productId: id })
+  }
   $scope.onItemDrag = function(event, index) {
     if (!$scope.swipeLeftPosition) {
       $scope.swipeLeftPosition = event.gesture.center.pageX;
@@ -21,49 +24,40 @@ privateWarehouse.controller('stockListCtrl', function($scope, $state) {
     $scope.activeItemIndex = index;
     $scope.swipeLeftDistance = Math.min($scope.swipeLeftDistance, 0)
   }
-  $scope.reduceProductAmount = function() {
-
+  $scope.reduceProductAmount = function(event) {
+    event.stopPropagation();
   }
   $scope.goToAddProduct = function() {
     $state.go('addProduct');
   }
   $scope.stockList = [
-    {
-      name: "Milk",
-      category: 0,
-      manufacturerId: 3,
-      price: 23.30,
-      supplierId: 4,
-      id: 8,
-      imgUrl: 'undefined',
-      expirationDate: '23.3.2015',
-
-
-    },
-        {
-          name: "Apples",
-          category: 0,
-          manufacturerId: 3,
-          price: 23.30,
-          supplierId: 4,
-          id: 82,
-          imgUrl: 'undefined',
-          expirationDate: '23.3.2015',
-
-
-        },
-            {
-              name: "Butter",
-              category: 0,
-              manufacturerId: 3,
-              price: 23.30,
-              supplierId: 4,
-              id: 18,
-              imgUrl: 'undefined',
-              expirationDate: '23.3.2015',
-
-
-            }
+   {
+     "id": 477,
+     "name": "Barra Pan",
+     "barcode": "2416070000501",
+     "image_url": "http://www.codecheck.info/img/288104/1",
+     "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
+     "category": 1,
+     "manufacturer": 1
+   },
+   {
+     "id": 474,
+     "name": "Barra Pan",
+     "barcode": "2416070000501",
+     "image_url": "http://www.codecheck.info/img/288104/1",
+     "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
+     "category": 1,
+     "manufacturer": 1
+   },
+   {
+     "id": 427,
+     "name": "Barra Pan",
+     "barcode": "2416070000501",
+     "image_url": "http://www.codecheck.info/img/288104/1",
+     "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
+     "category": 1,
+     "manufacturer": 1
+   }
   ]
 
 })

@@ -7,8 +7,12 @@
 
   .list {
     margin: 0 -10px;
-    &.not-available-list
-{opacity:.5}
+
+    &.not-available-list {
+      opacity: .5;
+      padding-top: 20px;
+    }
+
     ul li {
       position: relative;
       height: 40px;
@@ -47,9 +51,14 @@
           transition: margin-left .6s;
         }
 
+        .amount {
+          display: inline-block;
+          width: 50px;
+        }
+
         .name {
           margin-left: 10px;
-          width: 60%;
+          width: 40%;
           display: inline-block;
         }
 
@@ -75,7 +84,7 @@
         }
       }
 
-      .remove {
+      .remove, .postpone {
         position: absolute;
         right: 10px;
         width: 30px;
@@ -90,6 +99,16 @@
         border: none;
         background-color: transparent;
       }
+
+      .postpone {
+        background-image: url(../img/postpone.png);
+        right: 50px;
+      }
     }
   }
+}
+
+.payback-logo {
+  width: 40px;
+  height: auto;
 }
