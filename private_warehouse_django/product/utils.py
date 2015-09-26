@@ -67,7 +67,10 @@ def seed_items():
             #
             #   CREATE CATEGORY IN DATABASE
             #
-            Category.objects.create(name=sub_category_title)
+            try:
+                Category.objects.create(name=sub_category_title)
+            except DataError:
+                pass
 
             #
             #PRODUCTS
@@ -129,7 +132,10 @@ def seed_items():
                 #
                 #   CREATE MANUFACTURER IN DATABASE
                 #
-                Manufacturer.objects.create(name=manufacturer)
+                try:
+                    Manufacturer.objects.create(name=manufacturer)
+                except DataError:
+                    pass
 
                 #
                 #   CREATE ITEM IN DATABASE
