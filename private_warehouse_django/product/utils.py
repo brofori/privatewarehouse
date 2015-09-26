@@ -2,6 +2,9 @@ __author__ = 'kwame'
 import requests
 from bs4 import BeautifulSoup
 from .models import Item
+from .models import Category
+from manufacturer.models import Manufacturer
+from django.db import DataError
 from supplier.models import Supplier
 
 
@@ -47,6 +50,14 @@ def seed_items():
             sub_category_title = s_a_tag.get_text()
             sub_category_link = s_a_tag['href']
 
+            if sub_category_title is None:
+                continue
+
+            #
+            #   CREATE CATEGORY IN DATABASE
+            #
+            Category.objects.create(name=sub_category_title)
+
             #
             #PRODUCTS
             #
@@ -71,19 +82,56 @@ def seed_items():
                 #
                 d_markup = requests.get(url + product_link).text
                 d_soup = BeautifulSoup(d_markup, 'html.parser')
-                #detail = p_soup.find_all("div", class_="")
 
-                name = d_soup.find("h1").text
-                category = d_soup.find("product-info-item").text
-                #manufacturer =
-                #barcode =
+                #name = d_soup.find("h1").text
+                category_name = sub_category_title
+                manufacturer = d_soup.find(text="Hersteller / Vertrieb")
+
+                if manufacturer is None:
+                    continue
+
+                manufacturer = manufacturer.find_parent("p").find_next_sibling().text
+
+                barcode = d_soup.find(text="Strichcode-Nummer")
+
+                if barcode is None:
+                    continue
+
+                barcode = barcode.find_parent("p").find_next_sibling().text
+
                 #supplier = Supplier.objects.first()
-                #image_url =
 
+                image_url = d_soup.find(class_="product-image block")
 
+                if image_url is None:
+                    continue
 
+                image_url = image_url.find("img").get('src')
+                image_url = url+image_url
 
-                products.append({"name": product_title, "link": product_link, "details":[]})
+                products.append({"name": product_title,
+                                 "product_link": product_link,
+                                 "image_url": image_url,
+                                 "barcode": barcode,
+                                 "manufacturer": manufacturer,
+                                 "categroy": category_name, })
+                #
+                #   CREATE MANUFACTURER IN DATABASE
+                #
+                Manufacturer.objects.create(name=manufacturer)
+
+                #
+                #   CREATE ITEM IN DATABASE
+                #
+                try:
+                    Item.objects.create(name=product_title,
+                                        product_link=product_link,
+                                        image_url=image_url,
+                                        barcode=barcode,
+                                        manufacturer=Manufacturer.objects.filter(name=manufacturer)[0],
+                                        category=Category.objects.filter(name=category_name)[0])
+                except DataError:
+                    print("DataError")
 
             category.get("sub_categories").append({"name": sub_category_title,
                                                    "link": sub_category_link,
@@ -94,5 +142,5 @@ def seed_items():
             category_dict[i] = category
 
 
-    print(category_dict)
+    print("finished data acquisition")
     #Item.objects.create()
