@@ -5,6 +5,10 @@ from .models import Item
 from supplier.models import Supplier
 
 
+def seed_tag_list():
+    requests.get()
+
+
 def seed_items():
     category_dict = []
     url = "http://www.codecheck.info"
