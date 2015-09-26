@@ -1,9 +1,14 @@
 <ion-view title="ProductDetail">
-  <ion-content class="product-detail-view view">
-    <div class="product-img">
-      <img ng-class="preview" ng-src="{{currentProduct.image_url}}" />
-      <h1>{{currentProduct.name}}</h1>
+  <ion-content class="product-detail-view view" ng-class="{expanded:$scope.isExpanded}">
+
+    <div class="hero slide-up" style="background-image: url('{{currentProduct.image_url}}');">
+      <div class="content">
+        <div class="avatar" style="background-image: url('{{currentProduct.image_url}}');"></div>
+        <h3><a class="light">{{currentProduct.name}}</a></h3>
+        <h4>index</h4>
+      </div>
     </div>
+
     <section class="info">
       <dl>
         <dd>
