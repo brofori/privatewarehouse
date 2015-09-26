@@ -1,8 +1,11 @@
+beautifulsoup4==4.4.0
 certifi==2015.9.6.2
+clarifai==0.2
 clarify-python==2.0.0
 decorator==4.0.4
 Django==1.8.4
 django-extensions==1.5.7
+django-rest-swagger==0.3.4
 django-taggit==0.17.1
 djangorestframework==3.2.4
 ipython==4.0.0
@@ -12,6 +15,9 @@ pexpect==3.3
 pickleshare==0.5
 Pillow==2.9.0
 psycopg2==2.6.1
+PyYAML==3.11
+readline==6.2.4.1
+requests==2.7.0
 simplegeneric==0.8.1
 six==1.9.0
 traitlets==4.0.0
