@@ -69,9 +69,8 @@ def seed_items():
                 d_soup = BeautifulSoup(d_markup, 'html.parser')
                 #detail = p_soup.find_all("div", class_="")
 
-                name = d_soup.find_all("h1")
-                print(name.text)
-                #category =
+                name = d_soup.find("h1").text
+                category = d_soup.find("product-info-item").text
                 #manufacturer =
                 #barcode =
                 #supplier = Supplier.objects.first()
