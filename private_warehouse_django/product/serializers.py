@@ -1,9 +1,9 @@
 __author__ = 'fritz'
 
 from rest_framework.serializers import ModelSerializer
-from .models import Product
+from .models import Item
 
 
 class ProductSerializer(ModelSerializer):
     class Meta:
-        model = Product
+        model = Item
