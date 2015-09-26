@@ -4,12 +4,18 @@ from django.contrib.auth.models import User
 
 
 class Household(models.Model):
-    users = models.ManyToOneRel(to=User)
+    user = models.ForeignKey(User)
+
+
+class HouseholdItemMap(models.Model):
+    item = models.ForeignKey('product.Item')
+    household = models.ForeignKey('Household')
+    min_quantity = models.IntegerField(default=0)
 
 
 class HouseholdProductMap(models.Model):
     household = models.ForeignKey('Household')
-    product = models.ForeignKey('product.models.Product')
+    product = models.ForeignKey('product.Product')
     expiration_date = models.DateTimeField()
     storage_location = models.TextField()
     payed_price = models.FloatField()
