@@ -5,11 +5,23 @@ from .models import Item
 from .models import Category
 from manufacturer.models import Manufacturer
 from django.db import DataError
+from .models import Item, Tag
+from django.db import IntegrityError
 from supplier.models import Supplier
 
 
 def seed_tag_list():
-    requests.get()
+    tag_list = []
+    abc = "abcdefghijklmnopqrstovwxyz"
+    for letter in abc:
+        r = requests.get("http://www.bbc.co.uk/food/ingredients/by/letter/{}".format(letter))
+        soup = BeautifulSoup(r.text, 'html.parser')
+        for li in soup.find_all("li", attrs={"class": "resource"}):
+            name = li.a.text.strip().lower()
+            try:
+                Tag.objects.create(name=name)
+            except IntegrityError:
+                pass
 
 
 def seed_items():

@@ -1,0 +1,33 @@
+﻿.stock-list-view .buttons {
+  text-align: right;
+}
+.stock-list-view .buttons > div {
+  display: inline-block;
+}
+.stock-list-view .list li {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: solid 1px black;
+}
+.stock-list-view .list li > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.stock-list-view .list li img {
+  width: 50px;
+  height: 50px;
+  border-radius: 40px;
+  margin: 5px;
+  border: 1px solid black;
+  outline: none;
+}
+.stock-list-view .list li .reduce {
+  float: right;
+  height: 60px;
+  width: 30px;
+}
+.stock-list-view .list li .name {
+  width: 60%;
+}
+/*# sourceMappingURL=stockList.css.map */
