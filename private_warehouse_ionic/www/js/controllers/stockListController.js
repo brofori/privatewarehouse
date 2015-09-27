@@ -6,10 +6,10 @@ privateWarehouse.controller('stockListCtrl', function($scope, $state) {
     return 5;
   }
   $scope.goToShoppingList = function() {
-    $state.go('shoppingList')
+    $state.go('app.shoppingList')
   }
   $scope.goToDetailProductView = function(id) {
-    $state.go('productDetail', { productId: id })
+    $state.go('app.productDetail', { productId: id })
   }
   $scope.onItemDrag = function(event, index) {
     if (!$scope.swipeLeftPosition) {
@@ -28,7 +28,7 @@ privateWarehouse.controller('stockListCtrl', function($scope, $state) {
     event.stopPropagation();
   }
   $scope.goToAddProduct = function() {
-    $state.go('addProduct');
+    $state.go('app.addProduct');
   }
   $scope.stockList = [
    {
