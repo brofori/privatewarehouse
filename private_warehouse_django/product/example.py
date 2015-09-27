@@ -10,28 +10,42 @@ from clarifai_basic import ClarifaiCustomModel
 # instantiate clarifai client
 clarifai = ClarifaiCustomModel(app_id="QktWAfPJZJS-Ux2w4y9thDnwtPshojLB-Ios8rcy", app_secret="li4IFQ7m1NAV3aOmp9LVPRcefUJjRwAn_BbYdvQF")
 
-concept_name = 'banana'
+concept_name = 'redbull_blue'
 
-# find some positive and negative examples
+
 PHISH_POSITIVES = [
-  'https://i761.photobucket.com/albums/xx260/hebeejebies/bananaAnimated_1419375685_zpst8szmi7f.png',
-  ''
+  'http://www.thedrinksbusiness.com/wordpress/wp-content/uploads/2013/04/redbull1-2.jpg',
+  'https://i.imgur.com/Kise1G1.jpg',
+  'https://i.imgur.com/wZBDVgD.jpg',
+  'https://i.imgur.com/musFOlD.jpg',
+  'https://i.imgur.com/Ex8hjcu.jpg',
+  'https://i.imgur.com/7kJCYEc.jpg',
+  'https://i.imgur.com/rBg1ykM.jpg',
+  'https://i.imgur.com/C5iyI5j.jpg',
+  'https://i.imgur.com/FbNzAgi.jpg',
+  'https://i.imgur.com/tYQSQ8n.jpg'
 ]
 
 # add the positive example images to the model
+
 for positive_example in PHISH_POSITIVES:
   clarifai.positive(positive_example, concept_name)
 
 
 # negatives are not required but will help if you want to discriminate between similar concepts
 PHISH_NEGATIVES = [
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/5587410471_cf932bf9fa_o.jpg',
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/7367377586_f5e7c59ef8_k.jpg',
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/8422034157_1fbe437d3a_b.jpg',
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/8464327405_5eaf39e6e2_o.jpg',
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/8804958484_9dcba3da19_k.jpg',
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/8805067594_f2abc5c751_k.jpg',
-  'http://clarifai-test.s3.amazonaws.com/phish/negative/9583629691_a1594637a9_k.jpg'
+  'https://i.imgur.com/tK2Z9nX.jpg',
+  'https://i.imgur.com/zcXU5Ic.jpg',
+  'https://i.imgur.com/OsmR5Lq.jpg',
+  'https://i.imgur.com/alvWNnS.jpg',
+  'https://i.imgur.com/Fvq7QFR.jpg',
+  'https://i.imgur.com/i2ntzrS.jpg',
+  'https://i.imgur.com/i85W1Q8.jpg',
+  'https://i.imgur.com/ylqCqY7.jpg',
+  'https://i.imgur.com/N74vsAU.jpg',
+  'https://i.imgur.com/8fm7GDB.jpg',
+  'https://i.imgur.com/YWlgxCz.jpg',
+  'https://i.imgur.com/REr2A6L.jpg'
 ]
 
 # add the negative example images to the model
@@ -43,9 +57,9 @@ clarifai.train(concept_name)
 
 
 PHISH_EXAMPLES = [
-  'https://clarifai-test.s3.amazonaws.com/photo-1-11-e1342391144673.jpg',
+  'http://www.sofort-billiger.de/getraenke/red-bull-dose.jpg',
   'https://clarifai-test.s3.amazonaws.com/DSC01226-e1311293061704.jpg',
-  'http://phishthoughts.com/wp-content/uploads/2012/07/photo-1-11-e1342391144673.jpg'
+  'http://www.globus-drive.de/medias/sys_master/products/8806071795742/9002490206840_1.jpg'
 ]
 
 NOT_PHISH = [
