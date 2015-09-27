@@ -79,8 +79,10 @@ class HouseholdViewSet(ModelViewSet):
     def shoppinglist(self, request, pk=None):
         household = Household.objects.get(pk=pk)
         queryset = HouseholdProductMap.objects.filter(household=household)
+        print(queryset)
         queryset = queryset.annotate(Count('product__item'))
-        queryset = queryset.distinct('product__item')
+        print(queryset)
+        #queryset = queryset.distinct('product__item')
         print(queryset)
 
         #queryset = Item.objects.all()
