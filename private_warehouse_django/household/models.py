@@ -22,8 +22,8 @@ class HouseholdItemMap(models.Model):
 class HouseholdProductMap(models.Model):
     household = models.ForeignKey('Household')
     product = models.ForeignKey('product.Product')
-    expiration_date = models.DateTimeField()
+    expiration_date = models.DateTimeField(null=True)
     storage_location = models.TextField()
-    payed_price = models.FloatField()
+    payed_price = models.FloatField(null=True)
     date_add = models.DateTimeField(auto_now_add=True)
     state = models.CharField(choices=STATES, default=1, max_length=128)
