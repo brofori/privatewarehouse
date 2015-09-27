@@ -4,7 +4,7 @@ from .serializers import HouseholdSerializer, HouseholdProductMapSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
+from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_201_CREATED
 from product.models import Item, Product
 from .models import HouseholdProductMap, HouseholdItemMap
 from django.db.models import Count
@@ -50,6 +50,7 @@ class HouseholdViewSet(ModelViewSet):
             HouseholdItemMap.objects.create(household=household,
                                             item=item,
                                             min_quantity=request.data.get('min_quantity', None))
+            return Response(status=HTTP_201_CREATED)
         return Response(status=HTTP_200_OK)
 
     @detail_route(methods=['post'])
@@ -59,11 +60,12 @@ class HouseholdViewSet(ModelViewSet):
             try:
                 item = Item.objects.get(pk=request.data.get('id', None))
                 household = Household.objects.get(pk=pk)
-            except Item.DoesNotExist:
-                return Response(status=HTTP_404_NOT_FOUND)
-            HouseholdItemMap.get(household=household,
+                HouseholdItemMap.get(household=household,
                                  item=item,
                                  min_quantity=request.data.get('min_quantity', None)).delete()
+            except Item.DoesNotExist:
+                return Response(status=HTTP_404_NOT_FOUND)
+
         return Response(status=HTTP_200_OK)
 
     @detail_route()

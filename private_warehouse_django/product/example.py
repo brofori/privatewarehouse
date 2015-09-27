@@ -8,7 +8,7 @@ from clarifai_basic import ClarifaiCustomModel
 
 
 # instantiate clarifai client
-clarifai = ClarifaiCustomModel(app_id="QktWAfPJZJS-Ux2w4y9thDnwtPshojLB-Ios8rcy", app_secret="li4IFQ7m1NAV3aOmp9LVPRcefUJjRwAn_BbYdvQF")
+clarifai = ClarifaiCustomModel(app_id="ItUlC81bP4d-C3-UgVJ-NrnixZBBPG1P9E-e24q6", app_secret="vfa6sX-zR9KyE71BqLFgEnBKQbE0lyUkHUZTVQCw")
 
 concept_name = 'redbull_blue'
 
@@ -23,7 +23,11 @@ PHISH_POSITIVES = [
   'https://i.imgur.com/rBg1ykM.jpg',
   'https://i.imgur.com/C5iyI5j.jpg',
   'https://i.imgur.com/FbNzAgi.jpg',
-  'https://i.imgur.com/tYQSQ8n.jpg'
+  'https://i.imgur.com/tYQSQ8n.jpg',
+  'http://www.edmsauce.com/wp-content/uploads/2014/11/bull.jpeg',
+  'http://mountainwinery.s3.amazonaws.com/img/RB_Reg_Can.jpg',
+  'http://www.creativecrash.com/system/photos/000/109/068/109068/big/redbull_01.jpg',
+  'http://popsop.com/wp-content/uploads/red_bull_art_of_can_noah_deledda.jpg'
 ]
 
 # add the positive example images to the model
