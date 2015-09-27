@@ -45,7 +45,8 @@ class Product(models.Model):
 
 
 class Price(models.Model):
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
+    amount = models.FloatField()
     product_supplier = models.ForeignKey('product.Product')
 
 

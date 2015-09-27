@@ -5,7 +5,7 @@ from .models import Item, Product, Price
 
 
 class ItemSerializer(ModelSerializer):
-    #category = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    #category = serializers.PrimaryKeyRelatedField(many=True, read_only=Truproduct_id = serializers.CharField(source="product.id")e)
     #manufacturer = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     class Meta:
         model = Item
@@ -14,7 +14,7 @@ class ItemSerializer(ModelSerializer):
 class ProductSerializer(ModelSerializer):
     name = serializers.CharField(source="item.name")
     image_url = serializers.URLField(source="item.image_url")
-    
+
     class Meta:
         model = Product
 
