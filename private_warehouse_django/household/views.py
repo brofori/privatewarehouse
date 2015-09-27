@@ -18,8 +18,8 @@ class HouseholdViewSet(ModelViewSet):
 
     @detail_route(methods=['post'])
     def add_product(self, request, pk=None):
-        if request.query_params.get('id', None):
-            id = request.query_params.get('id', None)
+        if request.data.get('id', None):
+            id = request.data.get('id', None)
             item = Item.objects.get(id=id)
             product = Product.objects.get(item=item)
             household = Household.objects.get(pk=pk)
