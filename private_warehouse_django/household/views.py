@@ -55,7 +55,8 @@ class HouseholdViewSet(ModelViewSet):
 
     @detail_route(methods=['post'])
     def remove_item(self, request, pk=None):
-
+        print(request.POST)
+        print(request.data)
         if request.data.get('id', None):
             try:
                 item = Item.objects.get(pk=request.data.get('id', None))
