@@ -30,10 +30,9 @@ class HouseholdViewSet(ModelViewSet):
 
     @detail_route(methods=['post'])
     def remove_product(self, request, pk=None):
-        if request.query_params.get('barcode', None):
-            barcode = request.query_params.get('barcode', None)
-            item = Item.objects.get(barcode=barcode)
-            product = Product.objects.get(item=item)
+        if request.data.get('id', None):
+            id = request.data.get('id', None)
+            product = Product.objects.get(id=id)
             household = Household.objects.get(pk=pk)
             h = HouseholdProductMap.objects.filter(product=product, household=household)[0]
             h.state = 1
