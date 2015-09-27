@@ -16,7 +16,7 @@ class HouseholdViewSet(ModelViewSet):
     serializer_class = HouseholdSerializer
     queryset = Household.objects.all()
 
-    @detail_route()
+    @detail_route(methods=['post'])
     def add_product(self, request, pk=None):
         if request.query_params.get('barcode', None):
             barcode = request.query_params.get('barcode', None)
