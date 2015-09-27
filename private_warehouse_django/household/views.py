@@ -60,7 +60,7 @@ class HouseholdViewSet(ModelViewSet):
             try:
                 item = Item.objects.get(pk=request.data.get('id', None))
                 household = Household.objects.get(pk=pk)
-                HouseholdItemMap.get(household=household,
+                HouseholdItemMap.objects.get(household=household,
                                  item=item,
                                  min_quantity=request.data.get('min_quantity', None)).delete()
             except Item.DoesNotExist:
