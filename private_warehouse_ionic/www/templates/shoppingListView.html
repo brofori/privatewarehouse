@@ -1,5 +1,5 @@
 <ion-view title="{{listTitle}}">
-  <ion-content class="shopping-list-view view">
+  <ion-content ng-class="{expanded:isExpanded}" class="shopping-list-view view">
     <section class="available-list list">
       <ul>
         <li ng-repeat="product in availableList">
@@ -11,7 +11,7 @@
             <button ng-click="checkProduct(product)" class="check"></button>
           </div>
           <button class="remove" ng-click="removeProduct($index, true)"></button>
-          <button class="postpone" ng-click="postponeProduct($index, false)"></button>
+          <button class="postpone" ng-click="removeProduct($index, true)"></button>
         </li>
       </ul>
     </section>
@@ -27,21 +27,27 @@
             <button ng-click="checkProduct(product)" class="check"></button>
           </div>
           <button class="remove" ng-click="removeProduct($index, false)"></button>
-          <button class="postpone" ng-click="postponeProduct($index, false)"></button>
+          <button class="postpone" ng-click="removeProduct($index, false)"></button>
         </li>
       </ul>
     </section>
+    <div></div>
+    <div class="filter-overlay" ng-if="showFilterOverlay">
+      filter by:
+      <select ng-change="onStoreChange()" ng-model="currentStore.id">
+        <option value="{{$index}}" ng-repeat="store in storeTypes">{{store.name}}</option>
+      </select>
+    </div>
   </ion-content>
   <section class="buttons bottom">
     <div class="store">
-      <button></button>
-      <span>Save to pantry</span>
+      <button class="mat-button" ng-click="saveToStock()"><i class="ion-icon"></i></button>
     </div>
     <div class="summary">
-      <span class="estimated-price">Estimated Price <span ng-bind-html="estimatedPrice | priceFilter"></span></span>
+      <span class="estimated-price"><img class="euro-logo" src="/img/euro.png" /> <span ng-bind-html="estimatedPrice | priceFilter"></span></span>
       <span class="payback-points"><img class="payback-logo" src="/img/payback.png" /><span>{{estimatedPrice/2 | intFilter}}</span></span>
     </div>
-    <div class="popup-wrapper">
+    <!--<div class="popup-wrapper">
       <button class="filter" ng-click="filterPopupBool = !filterPopupBool"></button>
       <div class="popup" ng-if="filterPopupBool">
         <p>filter by:</p>
@@ -49,6 +55,6 @@
           <option value="{{$index}}" ng-repeat="store in storeTypes">{{store.name}}</option>
         </select>
       </div>
-    </div>
+    </div>-->
   </section>
 </ion-view>

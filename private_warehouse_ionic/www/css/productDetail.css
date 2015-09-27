@@ -1,0 +1,46 @@
+﻿.info,
+.stats {
+  margin: 0 10px;
+}
+.info dd,
+.stats dd,
+.info dt,
+.stats dt {
+  display: inline-block;
+  padding-top: 8px;
+  font-size: 17px;
+}
+.info .events li,
+.stats .events li {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+}
+.info .events li > *,
+.stats .events li > * {
+  vertical-align: middle;
+}
+.info .events li span,
+.stats .events li span {
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  margin: 0 6px;
+}
+.info .events li:before,
+.stats .events li:before {
+  vertical-align: middle;
+  width: 30px;
+  height: 100%;
+  content: '';
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 70% auto;
+  background-image: url(../img/right.png);
+}
+.info .events li.in:before,
+.stats .events li.in:before {
+  background-image: url(../img/left.png);
+}
+/*# sourceMappingURL=productDetail.css.map */

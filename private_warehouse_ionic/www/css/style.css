@@ -1,4 +1,26 @@
-﻿div.popup-wrapper {
+﻿.mat-button {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  max-height: initial;
+  max-width: initial;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #e65100;
+  color: white;
+  border: none;
+}
+button.filter i {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: 60% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../img/filter.png);
+}
+div.popup-wrapper {
   display: inline-block;
 }
 div.popup-wrapper button {
@@ -70,10 +92,9 @@ div.popup-wrapper .popup {
 }
 .bottom.buttons {
   height: 90px;
-  background-color: grey;
   text-align: right;
   padding: 0 10px;
-  color: white;
+  color: black;
 }
 .bottom.buttons > div {
   margin-top: 5px;
@@ -83,7 +104,9 @@ div.popup-wrapper .popup {
   display: inline-block;
   vertical-align: middle;
   text-align: left;
-  width: 50%;
+  width: 30%;
+  background-color: #ffffff;
+  padding-left: 10px;
 }
 .bottom.buttons .summary > span {
   display: block;
@@ -109,6 +132,11 @@ div.popup-wrapper .popup {
   display: block;
 }
 .bottom.buttons .store button {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.bottom.buttons .store button i {
   margin: 0 auto;
   display: block;
   background-image: url(../img/save-file.png);
@@ -120,32 +148,19 @@ div.popup-wrapper .popup {
 }
 .bottom .add-product {
   position: absolute;
-  border-radius: 90px;
-  height: 65px;
-  width: 65px;
-  display: block;
-  outline: none;
-  padding: 0;
-  color: white;
-  background-color: #589250;
-  border: 1px solid #588850;
   right: 10px;
-  top: 0;
-}
-.bottom .add-product.activated {
-  background-color: #588850;
 }
 .bottom .shopping-list {
+  position: absolute;
+  right: 70px;
+}
+.bottom .shopping-list i {
   background-image: url(../img/shopping-list.png);
-  -webkit-appearance: none;
-  background-color: transparent;
-  border: none;
-  width: 60px;
-  height: 60px;
-  background-size: 100%;
-  background-position: center center;
   background-repeat: no-repeat;
-  padding: 0;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 input[type=text],
 input[type=number] {
@@ -154,10 +169,22 @@ input[type=number] {
   border: 1px solid black;
   border-radius: 5px;
 }
+.filter-overlay {
+  position: fixed;
+  top: 70px;
+  bottom: 70px;
+  left: 10px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  z-index: 9999999;
+}
 .add-product-view section {
   padding-bottom: 20px;
   border-bottom: 1px solid black;
   position: relative;
+  margin: 0 10px;
 }
 .add-product-view section .title {
   position: absolute;
@@ -172,6 +199,9 @@ input[type=number] {
 }
 .add-product-view section:last-child {
   border: none;
+}
+.add-product-view .input {
+  padding-top: 30px;
 }
 .add-product-view .input > * {
   display: inline-block;
@@ -194,19 +224,71 @@ input[type=number] {
   width: 50px;
   height: 40px;
 }
+.add-product-view .add-button-wrapper {
+  text-align: right;
+}
+.add-product-view .add-button-wrapper i {
+  font-size: 28px;
+}
 .add-product-view .settings input[type=number] {
   width: 30px;
   display: inline-block;
+}
+.info,
+.stats {
+  margin: 0 10px;
+}
+.info dd,
+.stats dd,
+.info dt,
+.stats dt {
+  display: inline-block;
+  padding-top: 8px;
+  font-size: 17px;
+}
+.info .events li,
+.stats .events li {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+}
+.info .events li > *,
+.stats .events li > * {
+  vertical-align: middle;
+}
+.info .events li span,
+.stats .events li span {
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  margin: 0 6px;
+}
+.info .events li:before,
+.stats .events li:before {
+  vertical-align: middle;
+  width: 30px;
+  height: 100%;
+  content: '';
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 70% auto;
+  background-image: url(../img/right.png);
+}
+.info .events li.in:before,
+.stats .events li.in:before {
+  background-image: url(../img/left.png);
 }
 .shopping-list-view .buttons {
   text-align: right;
 }
 .shopping-list-view .list {
-  margin: 0 -10px;
+  padding-top: 40px;
 }
 .shopping-list-view .list.not-available-list {
   opacity: .5;
   padding-top: 20px;
+  padding-bottom: 200px !important;
 }
 .shopping-list-view .list ul li {
   position: relative;
@@ -248,6 +330,9 @@ input[type=number] {
   margin-left: 10px;
   width: 40%;
   display: inline-block;
+  overflow: hidden;
+  max-height: 100%;
+  vertical-align: top;
 }
 .shopping-list-view .list ul li .inner-item .price {
   width: 50px;
@@ -291,11 +376,25 @@ input[type=number] {
   width: 40px;
   height: auto;
 }
+.stock-list-view {
+  padding-bottom: 60px;
+}
 .stock-list-view .buttons {
   text-align: right;
 }
 .stock-list-view .buttons > div {
   display: inline-block;
+}
+.stock-list-view .mat-button {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -17px;
+}
+.stock-list-view .list {
+  padding-bottom: 80px;
 }
 .stock-list-view .list li {
   width: 100%;

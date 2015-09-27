@@ -1,4 +1,26 @@
-﻿div.popup-wrapper {
+﻿.mat-button {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  max-height: initial;
+  max-width: initial;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #e65100;
+  color: white;
+  border: none;
+}
+button.filter i {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-size: 60% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../img/filter.png);
+}
+div.popup-wrapper {
   display: inline-block;
 }
 div.popup-wrapper button {
@@ -70,10 +92,9 @@ div.popup-wrapper .popup {
 }
 .bottom.buttons {
   height: 90px;
-  background-color: grey;
   text-align: right;
   padding: 0 10px;
-  color: white;
+  color: black;
 }
 .bottom.buttons > div {
   margin-top: 5px;
@@ -83,7 +104,9 @@ div.popup-wrapper .popup {
   display: inline-block;
   vertical-align: middle;
   text-align: left;
-  width: 50%;
+  width: 30%;
+  background-color: #ffffff;
+  padding-left: 10px;
 }
 .bottom.buttons .summary > span {
   display: block;
@@ -109,6 +132,11 @@ div.popup-wrapper .popup {
   display: block;
 }
 .bottom.buttons .store button {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.bottom.buttons .store button i {
   margin: 0 auto;
   display: block;
   background-image: url(../img/save-file.png);
@@ -120,32 +148,19 @@ div.popup-wrapper .popup {
 }
 .bottom .add-product {
   position: absolute;
-  border-radius: 90px;
-  height: 65px;
-  width: 65px;
-  display: block;
-  outline: none;
-  padding: 0;
-  color: white;
-  background-color: #589250;
-  border: 1px solid #588850;
   right: 10px;
-  top: 0;
-}
-.bottom .add-product.activated {
-  background-color: #588850;
 }
 .bottom .shopping-list {
+  position: absolute;
+  right: 70px;
+}
+.bottom .shopping-list i {
   background-image: url(../img/shopping-list.png);
-  -webkit-appearance: none;
-  background-color: transparent;
-  border: none;
-  width: 60px;
-  height: 60px;
-  background-size: 100%;
-  background-position: center center;
   background-repeat: no-repeat;
-  padding: 0;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 input[type=text],
 input[type=number] {
@@ -153,5 +168,16 @@ input[type=number] {
   padding: 5px;
   border: 1px solid black;
   border-radius: 5px;
+}
+.filter-overlay {
+  position: fixed;
+  top: 70px;
+  bottom: 70px;
+  left: 10px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+  z-index: 9999999;
 }
 /*# sourceMappingURL=main.css.map */

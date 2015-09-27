@@ -5,17 +5,16 @@
       <div class="content">
         <div class="avatar" style="background-image: url('{{currentProduct.image_url}}');"></div>
         <h3><a class="light">{{currentProduct.name}}</a></h3>
-        <h4>index</h4>
       </div>
     </div>
 
     <section class="info">
       <dl>
         <dd>
-          Price
+          Price:
         </dd>
         <dt>
-          3€
+          {{currentProduct.current_price}} &euro;
         </dt>
       </dl>
       <p class="description">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
@@ -26,5 +25,16 @@
       </ul>
     </section>
   </ion-content>
+
+  <!--<ion-content ng-class="{expanded:$scope.isExpanded}">
+    <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+      <div class="content">
+        <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+        <h3><a class="light">Daenerys Targaryen</a></h3>
+        <h4>dragon_mommy</h4>
+      </div>
+    </div>
+
+  </ion-content>-->
 
 </ion-view>

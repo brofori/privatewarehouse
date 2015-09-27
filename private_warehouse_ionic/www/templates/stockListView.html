@@ -1,26 +1,25 @@
 <ion-view title="Easy Shopper">
-  <ion-content class="stock-list-view view">
-    <section class="buttons">
-      <div class="popup-wrapper">
-        <button class="sort">+</button>
-        <div class="popup"></div>
-      </div>
-      <div class="popup-wrapper">
-        <button class="filter">+</button>
-        <div class="popup"></div>
-      </div>
-    </section>
-    <section class="list">
-      <p>Currently in your Stock:</p>
-      <ul>
-        <li ng-repeat="product in stockList" ng-click="goToDetailProductView(product.id)">
-          <img ng-src="{{product.image_url}}"><span class="name">{{product.name}}</span><span class="amount">{{getAmountById(product.id)}}</span> <button ng-click="reduceProductAmount($event)" class="reduce">-1</button>
-        </li>
-      </ul>
-    </section>
+  <ion-content ng-class="{expanded:isExpanded}" class="stock-list-view view">
+
+    <div class="content">
+
+      <section class="list">
+        <p>Currently in your Stock:</p>
+        <div class="list animate-fade-slide-in-right">
+          <a ng-repeat="product in stockList" ng-click="goToDetailProductView(product.product_id)" class="item item-avatar item-icon-right">
+
+            <img ng-src="{{product.image_url}}">
+            <h2>{{product.name}}</h2>
+            <button ng-click="reduceProductAmount($event, product.product_id)" class="mat-button">-1</button>
+
+            <!--<img ng-src="{{product.image_url}}"><span class="name">{{product.name}}</span><span class="amount">{{getAmountById(product.id)}}</span> <button ng-click="reduceProductAmount($event)" class="reduce">-1</button>-->
+          </a>
+        </div>
+      </section>
+    </div>
   </ion-content>
   <div class="bottom">
-    <button ng-click="goToAddProduct()" class="add-product">+1</button>
-    <button ng-click="goToShoppingList()" class="shopping-list"></button>
+    <button ng-click="goToAddProduct()" class="button mat-button add-product"><i class="icon ion-plus"></i></button>
+    <button ng-click="goToShoppingList()" class="button mat-button shopping-list"><i class="icon"></i></button>
   </div>
 </ion-view>

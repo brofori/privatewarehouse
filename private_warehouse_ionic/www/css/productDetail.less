@@ -1,1 +1,47 @@
 @import 'mixins';
+
+.info, .stats {
+  margin: 0 10px;
+
+  dd, dt {
+    display: inline-block;
+    padding-top: 8px;
+    font-size: 17px;
+  }
+
+  .events {
+    li {
+      position: relative;
+      height: 30px;
+      line-height: 30px;
+
+      > * {
+        vertical-align: middle;
+      }
+
+      span {
+        height: 30px;
+        line-height: 30px;
+        display: inline-block;
+        margin: 0 6px;
+      }
+
+
+      &:before {
+        vertical-align: middle;
+        width: 30px;
+        height: 100%;
+        content: '';
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 70% auto;
+        background-image: url(../img/right.png);
+      }
+
+      &.in:before {
+        background-image: url(../img/left.png);
+      }
+    }
+  }
+}

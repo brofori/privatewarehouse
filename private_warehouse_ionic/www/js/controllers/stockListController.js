@@ -1,4 +1,30 @@
-privateWarehouse.controller('stockListCtrl', function($scope, $state) {
+privateWarehouse.controller('stockListCtrl', function($scope, $stateParams, $state, $timeout, ionicMaterialInk, ionicMaterialMotion, dataService) {
+  dataService.getItems().then(function(response) {
+    $scope.stockList = response;
+    setTimeout(function() {
+      // Set Header
+      $scope.$parent.showHeader();
+      $scope.$parent.clearFabs();
+      $scope.$parent.setHeaderFab('left');
+
+      // Delay expansion
+      $timeout(function() {
+        $scope.isExpanded = true;
+        $scope.$parent.setExpanded(true);
+      }, 300);
+
+      // Set Motion
+      ionicMaterialMotion.fadeSlideInRight();
+
+      // Set Ink
+      ionicMaterialInk.displayEffect();
+
+    })
+  })
+
+
+
+
   $scope.swipeLeftDistance = 0;
   $scope.swipeLeftPosition = undefined;
   $scope.activeItemIndex = undefined;
@@ -24,40 +50,36 @@ privateWarehouse.controller('stockListCtrl', function($scope, $state) {
     $scope.activeItemIndex = index;
     $scope.swipeLeftDistance = Math.min($scope.swipeLeftDistance, 0)
   }
-  $scope.reduceProductAmount = function(event) {
+  $scope.reduceProductAmount = function(event, id) {
     event.stopPropagation();
+    $scope.stockList = [];
+    dataService.removeFromStock(id).then(function() {
+      dataService.getItems().then(function(response) {
+        $scope.stockList = response;
+        setTimeout(function() {
+          $scope.$parent.showHeader();
+          $scope.$parent.clearFabs();
+          $scope.$parent.setHeaderFab('left');
+
+          // Delay expansion
+          $timeout(function() {
+            $scope.isExpanded = true;
+            $scope.$parent.setExpanded(true);
+          }, 300);
+
+          // Set Motion
+          ionicMaterialMotion.fadeSlideInRight();
+
+          // Set Ink
+          ionicMaterialInk.displayEffect();
+        })
+
+      })
+    });
+
   }
   $scope.goToAddProduct = function() {
     $state.go('app.addProduct');
   }
-  $scope.stockList = [
-   {
-     "id": 477,
-     "name": "Barra Pan",
-     "barcode": "2416070000501",
-     "image_url": "http://www.codecheck.info/img/288104/1",
-     "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
-     "category": 1,
-     "manufacturer": 1
-   },
-   {
-     "id": 474,
-     "name": "Barra Pan",
-     "barcode": "2416070000501",
-     "image_url": "http://www.codecheck.info/img/288104/1",
-     "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
-     "category": 1,
-     "manufacturer": 1
-   },
-   {
-     "id": 427,
-     "name": "Barra Pan",
-     "barcode": "2416070000501",
-     "image_url": "http://www.codecheck.info/img/288104/1",
-     "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
-     "category": 1,
-     "manufacturer": 1
-   }
-  ]
 
 })

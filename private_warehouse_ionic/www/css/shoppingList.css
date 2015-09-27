@@ -2,11 +2,12 @@
   text-align: right;
 }
 .shopping-list-view .list {
-  margin: 0 -10px;
+  padding-top: 40px;
 }
 .shopping-list-view .list.not-available-list {
   opacity: .5;
   padding-top: 20px;
+  padding-bottom: 200px !important;
 }
 .shopping-list-view .list ul li {
   position: relative;
@@ -48,6 +49,9 @@
   margin-left: 10px;
   width: 40%;
   display: inline-block;
+  overflow: hidden;
+  max-height: 100%;
+  vertical-align: top;
 }
 .shopping-list-view .list ul li .inner-item .price {
   width: 50px;

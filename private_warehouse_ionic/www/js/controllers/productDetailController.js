@@ -1,14 +1,31 @@
-privateWarehouse.controller('productDetailCtrl', function($scope, $state) {
+privateWarehouse.controller('productDetailCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, dataService) {
+  // Set Header
+  dataService.getItemDetails($stateParams.productId).then(function(response) {
+    $scope.currentProduct = response;
+    setTimeout(function() {
+      $scope.$parent.showHeader();
+      $scope.$parent.clearFabs();
+      $scope.isExpanded = false;
+      $scope.$parent.setExpanded(false);
+      $scope.$parent.setHeaderFab(false);
 
-  $scope.currentProduct = {
-    "id": 477,
-    "name": "Barra Pan",
-    "barcode": "2416070000501",
-    "image_url": "http://www.codecheck.info/img/288104/1",
-    "product_link": "http://www.codecheck.info/essen/backwaren/baguette/ean_2416070000501/id_828746/Barra_Pan.pro",
-    "category": 1,
-    "manufacturer": 1
-  };
+      // Set Motion
+      $timeout(function() {
+        ionicMaterialMotion.slideUp({
+          selector: '.slide-up'
+        });
+      }, 300);
+
+      $timeout(function() {
+        ionicMaterialMotion.fadeSlideInRight({
+          startVelocity: 3000
+        });
+      }, 700);
+
+      // Set Ink
+      ionicMaterialInk.displayEffect();
+    })
+  })
 
   $scope.eventList = [
     {

@@ -1,8 +1,22 @@
-﻿.stock-list-view .buttons {
+﻿.stock-list-view {
+  padding-bottom: 60px;
+}
+.stock-list-view .buttons {
   text-align: right;
 }
 .stock-list-view .buttons > div {
   display: inline-block;
+}
+.stock-list-view .mat-button {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-top: -17px;
+}
+.stock-list-view .list {
+  padding-bottom: 80px;
 }
 .stock-list-view .list li {
   width: 100%;

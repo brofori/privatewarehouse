@@ -1,6 +1,6 @@
 <ion-view title="Add product">
-  <ion-content class="add-product-view view">
-    <section class="input"><input type="text" placeholder="product name" /> <button class="scan" ng-click="openScanner()"></button></section>
+  <ion-content ng-class="{expanded:isExpanded}" class="add-product-view view">
+    <section class="input"><input type="text" placeholder="barcode" ng-model="model.barcode" /> <button class="scan" ng-click="openScanner()"></button></section>
     <section class="product-data">
       <span class="title">Product information</span>
       <img ng-src="" />
@@ -8,9 +8,9 @@
     </section>
     <section class="settings">
       <span class="title">Settings</span>
-      <input type="radio" /> min Quantity in Pantry <input type="number" />
+      <input type="radio" ng-model="model.check" /> min Quantity in Pantry <input ng-model="model.quantity" type="number" />
 
-      <div class="add-button-wrapper"><button class="add">Add</button></div>
+      <div class="add-button-wrapper"><button class="add mat-button" ng-click="addItem()"><i class="icon ion-paper-airplane"></i></button></div>
     </section>
   </ion-content>
 

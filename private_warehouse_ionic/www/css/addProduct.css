@@ -2,6 +2,7 @@
   padding-bottom: 20px;
   border-bottom: 1px solid black;
   position: relative;
+  margin: 0 10px;
 }
 .add-product-view section .title {
   position: absolute;
@@ -16,6 +17,9 @@
 }
 .add-product-view section:last-child {
   border: none;
+}
+.add-product-view .input {
+  padding-top: 30px;
 }
 .add-product-view .input > * {
   display: inline-block;
@@ -37,6 +41,12 @@
   border: 1px solid black;
   width: 50px;
   height: 40px;
+}
+.add-product-view .add-button-wrapper {
+  text-align: right;
+}
+.add-product-view .add-button-wrapper i {
+  font-size: 28px;
 }
 .add-product-view .settings input[type=number] {
   width: 30px;
