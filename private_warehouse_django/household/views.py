@@ -28,7 +28,7 @@ class HouseholdViewSet(ModelViewSet):
             HouseholdProductMap.objects.create(product=product, household=household)
         return Response(status=HTTP_200_OK)
 
-    @detail_route()
+    @detail_route(methods=['post'])
     def remove_product(self, request, pk=None):
         if request.query_params.get('barcode', None):
             barcode = request.query_params.get('barcode', None)
