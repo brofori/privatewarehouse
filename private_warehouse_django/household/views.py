@@ -78,17 +78,12 @@ class HouseholdViewSet(ModelViewSet):
     @detail_route()
     def shoppinglist(self, request, pk=None):
         household = Household.objects.get(pk=pk)
-        queryset = HouseholdProductMap.objects.filter(household=household).filter(state=1)
-
-        items = []
-        for entry in queryset:
-            if entry.product.item not in items:
-                items.append(entry.product.item)
         items_to_order = []
-        for item in items:
-            min_quantity = HouseholdItemMap(household=household, item=item).min_quantity
-            if min_quantity > len(HouseholdProductMap.objects.filter(product__item=item)):
-                items_to_order.append(item)
+        for mapping in HouseholdItemMap.objects.filter(household=household):
+            if mapping.min_quantity > len(HouseholdProductMap.objects.filter(product__item=mapping.item).filter(state=2)):
+                items_to_order.append(mapping.item)
+
+
         #queryset = Item.objects.all()
         s = ItemSerializer(items_to_order, many=True)
         return Response(s.data, status=HTTP_200_OK)
