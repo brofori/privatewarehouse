@@ -81,7 +81,7 @@ class HouseholdViewSet(ModelViewSet):
         queryset = HouseholdProductMap.objects.filter(household=household)
         queryset.annotate(Count('product__item'))
         queryset.distinct('product__item')
-        queryset = Item.objects.all()
+        #queryset = Item.objects.all()
         s = ItemSerializer(queryset, many=True)
         return Response(s.data, status=HTTP_200_OK)
 
