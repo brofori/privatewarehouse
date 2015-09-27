@@ -80,8 +80,8 @@ class HouseholdViewSet(ModelViewSet):
         household = Household.objects.get(pk=pk)
         queryset = HouseholdProductMap.objects.filter(household=household)
         print(queryset)
-        queryset = queryset.annotate(Count('product__item'))
-        print(queryset.product__item__count)
+        queryset = queryset.annotate(amount=Count('product__item'))
+        print(queryset.amount)
         for a in queryset:
             print(repr(a))
         #queryset = queryset.distinct('product__item')
