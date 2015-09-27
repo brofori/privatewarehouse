@@ -22,10 +22,14 @@ class HouseholdViewSet(ModelViewSet):
             id = request.data.get('id', None)
             try:
                 product = Product.objects.get(id=id)
+                household = Household.objects.get(pk=pk)
+                HouseholdProductMap.objects.create(product=product, household=household)
             except Product.DoesNotExist:
                 pass
-            household = Household.objects.get(pk=pk)
-            HouseholdProductMap.objects.create(product=product, household=household)
+            except Household.DoesNotExist:
+                pass
+
+
         return Response(status=HTTP_200_OK)
 
     @detail_route(methods=['post'])
