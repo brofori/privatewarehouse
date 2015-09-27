@@ -34,11 +34,15 @@ class HouseholdViewSet(ModelViewSet):
 
     @detail_route(methods=['post'])
     def remove_product(self, request, pk=None):
+
         if request.data.get('id', None):
+
             id = request.data.get('id', None)
+            print(id)
             product = Product.objects.get(id=id)
             household = Household.objects.get(pk=pk)
-            h = HouseholdProductMap.objects.filter(product=product, household=household)[0]
+            print(product)
+            h = HouseholdProductMap.objects.filter(state=2).filter(product=product, household=household)[0]
             h.state = 1
             h.save()
         return Response(status=HTTP_200_OK)
@@ -60,8 +64,6 @@ class HouseholdViewSet(ModelViewSet):
 
     @detail_route(methods=['post'])
     def remove_item(self, request, pk=None):
-        print(request.POST)
-        print(request.data)
         if request.data.get('id', None):
             try:
                 item = Item.objects.get(pk=request.data.get('id', None))
