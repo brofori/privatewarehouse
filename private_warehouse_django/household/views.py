@@ -65,7 +65,10 @@ class HouseholdViewSet(ModelViewSet):
                                  min_quantity=request.data.get('min_quantity', None)).delete()
             except Item.DoesNotExist:
                 return Response(status=HTTP_404_NOT_FOUND)
-
+            except Household.DoesNotExist:
+                return Response(status=HTTP_404_NOT_FOUND)
+            except HouseholdItemMap.DoesNotExist:
+                return Response(status=HTTP_404_NOT_FOUND)
         return Response(status=HTTP_200_OK)
 
     @detail_route()
