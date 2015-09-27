@@ -127,27 +127,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.bar-positive {
-  background-color: #589250 !important;
-  color: white;
-  height: 60px !important;
-  -webkit-box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.75);
-}
-.bar-positive .button.button-clear {
-  font-size: 26px;
-  margin-top: 4px;
-  margin-left: 6px;
-}
-.bar-positive .title {
-  text-align: center !important;
-  line-height: 60px !important;
-  color: white !important;
-  height: 60px !important;
-}
-.has-header {
-  top: 60px !important;
+button {
+  -webkit-appearance: none;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 div.popup-wrapper {
   display: inline-block;
@@ -176,9 +160,37 @@ div.popup-wrapper .popup {
   right: 20px;
   height: 200px;
 }
-.view .scroll {
-  padding-top: 20px;
-  margin: 0 10px;
+.bottom div.popup-wrapper .popup {
+  text-align: left;
+  padding: 10px;
+  top: auto;
+  left: 5px;
+  height: 80px;
+  right: 5px;
+  bottom: 82px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+.bottom div.popup-wrapper .popup:before,
+.bottom div.popup-wrapper .popup:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 19px solid transparent;
+  border-right: 19px solid transparent;
+  border-top: 19px solid white;
+  bottom: -19px;
+  right: 1px;
+}
+.bottom div.popup-wrapper .popup:before {
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid black;
+  bottom: -20px;
+  right: 0;
 }
 .cents:before {
   content: '.';
@@ -192,7 +204,7 @@ div.popup-wrapper .popup {
   z-index: 9;
 }
 .bottom.buttons {
-  height: 40px;
+  height: 90px;
   background-color: grey;
   text-align: right;
   padding: 0 10px;
@@ -200,6 +212,46 @@ div.popup-wrapper .popup {
 }
 .bottom.buttons > div {
   margin-top: 5px;
+  vertical-align: middle;
+}
+.bottom.buttons .summary {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  width: 50%;
+}
+.bottom.buttons .summary > span {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+}
+.bottom.buttons .summary > span img {
+  vertical-align: top;
+  margin-right: 10px;
+}
+.bottom.buttons .summary > span > span {
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  vertical-align: top;
+}
+.bottom.buttons .store {
+  text-align: center;
+  display: inline-block;
+  width: 120px;
+}
+.bottom.buttons .store span {
+  display: block;
+}
+.bottom.buttons .store button {
+  margin: 0 auto;
+  display: block;
+  background-image: url(../img/save-file.png);
+  width: 30px;
+  height: 30px;
+  background-size: 80% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 .bottom .add-product {
   position: absolute;

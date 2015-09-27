@@ -9,3 +9,11 @@ privateWarehouse.filter('priceFilter', function() {
     return '<span class="tens">' + tens + '</span><span class="cents">' + cents + '</span>';
   };
 })
+
+privateWarehouse.filter('intFilter', function() {
+
+  return function(input) {
+
+    return parseInt(input);
+  };
+})

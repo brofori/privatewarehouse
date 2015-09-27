@@ -1,4 +1,4 @@
-<ion-view title="">
+<ion-view title="{{listTitle}}">
   <ion-content class="shopping-list-view view">
     <section class="available-list list">
       <ul>
@@ -6,11 +6,12 @@
           <div class="inner-item" on-drag="onItemDrag($event,$index)" style="{{$index == activeItemIndex?'margin-left: '+swipeLeftDistance+'px;':'' }}" ng-class="{transition:$index != activeItemIndex, checked:product.checked}">
             <span class="index">{{$index}}</span>
             <span class="name">{{product.name}}</span>
-            <span class="amount">{{getAmountById(product.id)}}</span>
+            <span class="amount">{{product.amount}}</span>
             <span class="price" ng-bind-html="product.price | priceFilter"></span>
             <button ng-click="checkProduct(product)" class="check"></button>
           </div>
-          <button class="remove" ng-click="removeProduct($index)"></button>
+          <button class="remove" ng-click="removeProduct($index, true)"></button>
+          <button class="postpone" ng-click="postponeProduct($index, false)"></button>
         </li>
       </ul>
     </section>
@@ -21,24 +22,33 @@
           <div class="inner-item" on-drag="onItemDrag($event, ($index + 2000))" style="{{($index+2000) == activeItemIndex?'margin-left: '+swipeLeftDistance+'px;':'' }}" ng-class="{transition:($index+2000) != activeItemIndex, checked:product.checked}">
             <span class="index">{{$index}}</span>
             <span class="name">{{product.name}}</span>
-            <span class="amount">{{getAmountById(product.id)}}</span>
+            <span class="amount">{{product.amount}}</span>
             <span class="price" ng-bind-html="product.price | priceFilter"></span>
             <button ng-click="checkProduct(product)" class="check"></button>
           </div>
-          <button class="remove" ng-click="removeProduct($index)"></button>
+          <button class="remove" ng-click="removeProduct($index, false)"></button>
+          <button class="postpone" ng-click="postponeProduct($index, false)"></button>
         </li>
       </ul>
     </section>
   </ion-content>
   <section class="buttons bottom">
-    <span class="estimated-price" ng-bind-html="estimatedPrice | priceFilter"></span>
-    <div class="popup-wrapper">
-      <button class="sort"></button>
-      <div class="popup"></div>
+    <div class="store">
+      <button></button>
+      <span>Save to pantry</span>
+    </div>
+    <div class="summary">
+      <span class="estimated-price">Estimated Price <span ng-bind-html="estimatedPrice | priceFilter"></span></span>
+      <span class="payback-points"><img class="payback-logo" src="/img/payback.png" /><span>{{estimatedPrice/2 | intFilter}}</span></span>
     </div>
     <div class="popup-wrapper">
-      <button class="filter"></button>
-      <div class="popup"></div>
+      <button class="filter" ng-click="filterPopupBool = !filterPopupBool"></button>
+      <div class="popup" ng-if="filterPopupBool">
+        <p>filter by:</p>
+        <select ng-change="onStoreChange()" ng-model="currentStore.id">
+          <option value="{{$index}}" ng-repeat="store in storeTypes">{{store.name}}</option>
+        </select>
+      </div>
     </div>
   </section>
 </ion-view>
