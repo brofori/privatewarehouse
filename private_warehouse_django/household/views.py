@@ -82,9 +82,6 @@ class HouseholdViewSet(ModelViewSet):
         for mapping in HouseholdItemMap.objects.filter(household=household):
             if mapping.min_quantity > len(HouseholdProductMap.objects.filter(product__item=mapping.item).filter(state=2)):
                 items_to_order.append(mapping.item)
-
-
-        #queryset = Item.objects.all()
         s = ItemSerializer(items_to_order, many=True)
         return Response(s.data, status=HTTP_200_OK)
 

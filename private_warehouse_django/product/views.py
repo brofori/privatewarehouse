@@ -6,7 +6,7 @@ from .serializers import ItemSerializer, ProductSerializer, PriceSerializer
 
 
 class ItemViewSet(ModelViewSet):
-    queryset = Item.objects.all()
+    queryset = Item.objects.all().exclude(img_url__is_null=True)
     serializer_class = ItemSerializer
 
     def get_queryset(self):
