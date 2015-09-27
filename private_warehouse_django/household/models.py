@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+from django.utils.translation import ugettext as _
+STATES = (
+    (1, _("used")),
+    (2, _("new")),
+    (3, _("on the way")),
+)
 
 
 class Household(models.Model):
@@ -20,3 +26,4 @@ class HouseholdProductMap(models.Model):
     storage_location = models.TextField()
     payed_price = models.FloatField()
     date_add = models.DateTimeField(auto_now_add=True)
+    state = models.CharField(choices=STATES, default=1, max_length=128)
