@@ -41,11 +41,12 @@ class Product(models.Model):
     item = models.ForeignKey('product.Item')
     supplier = models.ForeignKey('supplier.Supplier')
     article_number = models.CharField(max_length=20)
-    current_price = models.ForeignKey('Price')
+    current_price = models.ForeignKey('Price', null=True)
 
 
 class Price(models.Model):
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True)
+    amount = models.FloatField()
     product_supplier = models.ForeignKey('product.Product')
 
 

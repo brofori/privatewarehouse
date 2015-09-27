@@ -4,7 +4,7 @@ from .serializers import HouseholdSerializer, HouseholdProductMapSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND
+from rest_framework.status import HTTP_200_OK, HTTP_404_NOT_FOUND, HTTP_201_CREATED
 from product.models import Item, Product
 from .models import HouseholdProductMap, HouseholdItemMap
 from django.db.models import Count
@@ -16,24 +16,31 @@ class HouseholdViewSet(ModelViewSet):
     serializer_class = HouseholdSerializer
     queryset = Household.objects.all()
 
-    @detail_route()
+    @detail_route(methods=['post'])
     def add_product(self, request, pk=None):
-        if request.query_params.get('barcode', None):
-            barcode = request.query_params.get('barcode', None)
-            item = Item.objects.get(barcode=barcode)
-            product = Product.objects.get(item=item)
-            household = Household.objects.get(pk=pk)
-            HouseholdProductMap.objects.create(product=product, household=household)
+        if request.data.get('id', None):
+            id = request.data.get('id', None)
+            try:
+                product = Product.objects.get(id=id)
+                household = Household.objects.get(pk=pk)
+                HouseholdProductMap.objects.create(product=product, household=household)
+            except Product.DoesNotExist:
+                pass
+            except Household.DoesNotExist:
+                pass
+
+
         return Response(status=HTTP_200_OK)
 
-    @detail_route()
+    @detail_route(methods=['post'])
     def remove_product(self, request, pk=None):
-        if request.query_params.get('barcode', None):
-            barcode = request.query_params.get('barcode', None)
-            item = Item.objects.get(barcode=barcode)
-            product = Product.objects.get(item=item)
+
+        if request.data.get('id', None):
+
+            id = request.data.get('id', None)
+            product = Product.objects.get(id=id)
             household = Household.objects.get(pk=pk)
-            h = HouseholdProductMap.objects.filter(product=product, household=household)[0]
+            h = HouseholdProductMap.objects.filter(state=2).filter(product=product, household=household)[0]
             h.state = 1
             h.save()
         return Response(status=HTTP_200_OK)
@@ -50,30 +57,32 @@ class HouseholdViewSet(ModelViewSet):
             HouseholdItemMap.objects.create(household=household,
                                             item=item,
                                             min_quantity=request.data.get('min_quantity', None))
+            return Response(status=HTTP_201_CREATED)
         return Response(status=HTTP_200_OK)
 
     @detail_route(methods=['post'])
     def remove_item(self, request, pk=None):
-
         if request.data.get('id', None):
             try:
                 item = Item.objects.get(pk=request.data.get('id', None))
                 household = Household.objects.get(pk=pk)
+                HouseholdItemMap.objects.get(household=household, item=item).delete()
             except Item.DoesNotExist:
                 return Response(status=HTTP_404_NOT_FOUND)
-            HouseholdItemMap.get(household=household,
-                                 item=item,
-                                 min_quantity=request.data.get('min_quantity', None)).delete()
+            except Household.DoesNotExist:
+                return Response(status=HTTP_404_NOT_FOUND)
+            except HouseholdItemMap.DoesNotExist:
+                return Response(status=HTTP_404_NOT_FOUND)
         return Response(status=HTTP_200_OK)
 
     @detail_route()
     def shoppinglist(self, request, pk=None):
         household = Household.objects.get(pk=pk)
-        queryset = HouseholdProductMap.objects.filter(household=household)
-        queryset.annotate(Count('product__item'))
-        queryset.distinct('product__item')
-        queryset = Item.objects.all()
-        s = ItemSerializer(queryset, many=True)
+        items_to_order = []
+        for mapping in HouseholdItemMap.objects.filter(household=household):
+            if mapping.min_quantity > len(HouseholdProductMap.objects.filter(product__item=mapping.item).filter(state=2)):
+                items_to_order.append(mapping.item)
+        s = ItemSerializer(items_to_order, many=True)
         return Response(s.data, status=HTTP_200_OK)
 
     @detail_route()
