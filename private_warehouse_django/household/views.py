@@ -83,11 +83,12 @@ class HouseholdViewSet(ModelViewSet):
         items = []
         for entry in queryset:
             if entry.product.item not in items:
-                items.append(entry)
+                items.append(entry.product.item)
         items_to_order = []
-        for entry in items:
-            if entry.min_quantity > len(HouseholdProductMap.objects.filter(product__item=entry.product.item)):
-                items_to_order.append(entry.product.item)
+        for item in items:
+            min_quantity = HouseholdItemMap(household=household, item=item).min_quantity
+            if min_quantity > len(HouseholdProductMap.objects.filter(product__item=item)):
+                items_to_order.append(item)
         #queryset = Item.objects.all()
         s = ItemSerializer([], many=True)
         return Response(s.data, status=HTTP_200_OK)
