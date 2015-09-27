@@ -41,7 +41,7 @@ class Product(models.Model):
     item = models.ForeignKey('product.Item')
     supplier = models.ForeignKey('supplier.Supplier')
     article_number = models.CharField(max_length=20)
-    current_price = models.ForeignKey('Price')
+    current_price = models.ForeignKey('Price', null=True)
 
 
 class Price(models.Model):

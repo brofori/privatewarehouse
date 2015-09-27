@@ -61,8 +61,7 @@ class HouseholdViewSet(ModelViewSet):
             try:
                 item = Item.objects.get(pk=request.data.get('id', None))
                 household = Household.objects.get(pk=pk)
-                HouseholdItemMap.objects.get(household=household,
-                                 item=item).delete()
+                HouseholdItemMap.objects.get(household=household, item=item).delete()
             except Item.DoesNotExist:
                 return Response(status=HTTP_404_NOT_FOUND)
             except Household.DoesNotExist:
