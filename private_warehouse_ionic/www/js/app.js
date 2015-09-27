@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var privateWarehouse = angular.module('privateWarehouse', ['ionic', 'ngCordova'])
+var privateWarehouse = angular.module('privateWarehouse', ['ionic', 'ngCordova', 'ionic-material', 'ionMdInput'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -23,7 +23,7 @@ var privateWarehouse = angular.module('privateWarehouse', ['ionic', 'ngCordova']
   $scope.isExpanded = false;
   $scope.hasHeaderFabLeft = false;
   $scope.hasHeaderFabRight = false;
-
+  
   var navIcons = document.getElementsByClassName('ion-navicon');
   for (var i = 0; i < navIcons.length; i++) {
     navIcons.addEventListener('click', function() {
