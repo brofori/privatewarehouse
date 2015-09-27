@@ -147,7 +147,7 @@ def seed_items():
                                         barcode=barcode,
                                         manufacturer=Manufacturer.objects.filter(name=manufacturer)[0],
                                         category=Category.objects.filter(name=category_name)[0])
-                except DataError:
+                except DataError or IndexError:
                     print("DataError")
 
             category.get("sub_categories").append({"name": sub_category_title,
