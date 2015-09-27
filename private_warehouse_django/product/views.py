@@ -6,7 +6,7 @@ from .serializers import ItemSerializer, ProductSerializer, PriceSerializer
 
 
 class ItemViewSet(ModelViewSet):
-
+    queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
     def get_queryset(self):
@@ -16,6 +16,7 @@ class ItemViewSet(ModelViewSet):
         """
         queryset = Item.objects.all()
         barcode = self.request.query_params.get('barcode', None)
+        print(barcode)
         if barcode is not None:
             queryset = queryset.filter(barcode=barcode)
         return queryset
