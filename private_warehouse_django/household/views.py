@@ -83,7 +83,6 @@ class HouseholdViewSet(ModelViewSet):
         queryset = queryset.annotate(Count('product__item'))
         print(queryset)
         for a in queryset:
-            print(a.name)
             print(repr(a))
         #queryset = queryset.distinct('product__item')
         print(queryset)
