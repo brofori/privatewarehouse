@@ -10,9 +10,9 @@ class HouseholdSerializer(ModelSerializer):
 
 
 class HouseholdProductMapSerializer(ModelSerializer):
-    name = serializers.CharField(source="product.item.name")
-    image_url = serializers.URLField(source="product.item.image_url")
-    product_id = serializers.CharField(source="product.id")
+    name = serializers.CharField(source="product.item.name", read_only=True)
+    image_url = serializers.URLField(source="product.item.image_url", read_only=True)
+    product_id = serializers.CharField(source="product.id", read_only=True)
 
     class Meta:
         model = HouseholdProductMap
