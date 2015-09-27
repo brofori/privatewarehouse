@@ -20,8 +20,10 @@ class HouseholdViewSet(ModelViewSet):
     def add_product(self, request, pk=None):
         if request.data.get('id', None):
             id = request.data.get('id', None)
-            item = Item.objects.get(id=id)
-            product = Product.objects.get(item=item)
+            try:
+                product = Product.objects.get(id=id)
+            except Product.DoesNotExist:
+                pass
             household = Household.objects.get(pk=pk)
             HouseholdProductMap.objects.create(product=product, household=household)
         return Response(status=HTTP_200_OK)
