@@ -78,7 +78,7 @@ class HouseholdViewSet(ModelViewSet):
     @detail_route()
     def shoppinglist(self, request, pk=None):
         household = Household.objects.get(pk=pk)
-        queryset = HouseholdProductMap.objects.filter(household=household)
+        queryset = HouseholdProductMap.objects.filter(household=household).filter(state=1)
         queryset = queryset
         queryset = queryset.annotate(amount=Count('product__item', distinct=True))
 
