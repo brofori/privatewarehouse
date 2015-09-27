@@ -12,6 +12,9 @@ class ItemSerializer(ModelSerializer):
 
 
 class ProductSerializer(ModelSerializer):
+    name = serializers.CharField(source="item.name")
+    image_url = serializers.URLField(source="item.image_url")
+    
     class Meta:
         model = Product
 
