@@ -79,13 +79,16 @@ class HouseholdViewSet(ModelViewSet):
     def shoppinglist(self, request, pk=None):
         household = Household.objects.get(pk=pk)
         queryset = HouseholdProductMap.objects.filter(household=household).filter(state=1)
-        queryset = queryset
-        queryset = queryset.annotate(amount=Count('product__item', distinct=True))
 
-        for a in queryset:
-            print(a.amount)
-        #queryset = queryset.distinct('product__item')
-
+        items = []
+        for entry in queryset:
+            if entry.product.item not in items:
+                items.append(entry.product.item)
+        items_to_order = []
+        for item in items:
+            print(item.name)
+            if item.min_quantity > len(HouseholdProductMap.objects.filter(product__item=item)):
+                items_to_order.append(item)
         #queryset = Item.objects.all()
         s = ItemSerializer([], many=True)
         return Response(s.data, status=HTTP_200_OK)
